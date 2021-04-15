@@ -58,4 +58,8 @@ userSchema.pre("save", async function(next) {
 
 const userModel = mongoose.model("user", userSchema);
 
+// On crée une table user contenant les données du Schema .
+// Dans l'interface mongo db la tables va s'appeler users, 
+// mongo db rajoute tjr un "s" au nom de table donné dans le script.
+
 module.exports = userModel;

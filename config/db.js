@@ -3,7 +3,7 @@ require("dotenv").config({ path: "./config/.env" });
 
 mongoose
   .connect(
-    "mongodb+srv://youcef:" + process.env.DB_PASSWORD  + "@cluster0.z6zbw.mongodb.net/test",
+    "mongodb+srv://youcef:" + process.env.DB_PASSWORD  + "@cluster0.z6zbw.mongodb.net/project-MERN",
 
     {
       useNewUrlParser: true,
