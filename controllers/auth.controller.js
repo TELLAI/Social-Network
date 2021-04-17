@@ -1,4 +1,5 @@
 const UserModel = require("../models/user.models")
+const { signUpErrors, signInErrors } = require("../utils/errors.utils");
 const jwt = require("jsonwebtoken");
 const maxAge = 3 * 24 * 60 * 60 * 1000; // la variable qui permet de faire expirer une session 
 
@@ -16,7 +17,8 @@ module.exports.signUp = async (req, res) => {
         res.status(201).json({ user: user.id});
     }
     catch(err) {
-        res.status(200).send({ err })
+        const errors = signUpErrors(err);
+        res.status(200).send( {errors} )
     }
 }
 
@@ -29,7 +31,8 @@ module.exports.signIn = async (req, res) => {
         res.cookie('jwt', token, {httpOnly: true, maxAge}) // le token est enregistré en cookie sur le navigateur tant que le user est connecté
         res.status(200).json({user : user._id});
     } catch (err){
-        res.status(200).json(err)
+        const errors = signInErrors(err)
+        res.status(200).json({errors})
     }
 }
 

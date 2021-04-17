@@ -3,50 +3,51 @@ const { isEmail } = require('validator')
 const bcrypt = require('bcrypt')
 
 const userSchema = new mongoose.Schema(
-    {
-        pseudo: {
-            type : String,
-            required : true,
-            minLength : 3,
-            maxLength: 55,
-            unique: true,
-            trim : true // le trim permet de supprimer le espaces a la fin du mot .
-        },
-        email: {
-            type : String,
-            required : true,
-            validate : [isEmail], // isEmail est une fonction de la librairie validator pour valider les email elle renvoie false ou true.
-            lowercase : true,
-            trim : true,
-        },
-        password : {
-            type : String,
-            required : true,
-            max: 1024,
-            minLength: 6,
-        },
-        picture : {
-            type : String,
-            default : "./uploads/profil/random-user.png"
-        },
-        bio: {
-            type : String,
-            max : 1024,
-        },
-        followers : {
-            type : [String]
-        },
-        following : {
-            type : [String]
-        },
-        likes : {
-            type : [String]
-        }
+  {
+    pseudo: {
+      type: String,
+      required: true,
+      minlength: 3,
+      maxlength: 55,
+      unique: true,
+      trim: true, // le trim permet de supprimer le espaces a la fin du mot .
     },
-    {
-        timestamps : true,
-    }
-)
+    email: {
+      type: String,
+      required: true,
+      validate: [isEmail], // isEmail est une fonction de la librairie validator pour valider les email elle renvoie false ou true.
+      lowercase: true,
+      unique: true,
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      max: 1024,
+      minlength: 6,
+    },
+    picture: {
+      type: String,
+      default: "./uploads/profil/random-user.png",
+    },
+    bio: {
+      type: String,
+      max: 1024,
+    },
+    followers: {
+      type: [String],
+    },
+    following: {
+      type: [String],
+    },
+    likes: {
+      type: [String],
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 // play funcion before save into display: "block"
 // cette fonction nous permet d'encrypter le password avec le module bcrypt
@@ -65,7 +66,7 @@ userSchema.statics.login = async function (email, password) {
         }
         throw Error('Incorrect password');
     }
-    throw Error('Incorrect Email')
+    throw Error('Incorrect email')
 }
 
 const userModel = mongoose.model("user", userSchema);
