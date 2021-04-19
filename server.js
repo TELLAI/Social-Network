@@ -7,6 +7,18 @@ const postRoutes = require("./routes/post.routes")
 const {checkUser, requireAuth} = require("./middleware/auth.middleware")
 require("./config/db");
 require("dotenv").config({ path: "./config/.env" });
+const cors = require("cors");
+
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  'allowedHeaders' : ['sessionId', 'Content-Type'],
+  'exposedHeaders' : ['sessionId'],
+  'methods' : 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue':false
+};
+
+app.use(cors(corsOptions))
 
 // bodyParser va nous permettre de mettre en forme les requtes 
 app.use(bodyParser.json());
