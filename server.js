@@ -10,12 +10,12 @@ require("dotenv").config({ path: "./config/.env" });
 const cors = require("cors");
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: [process.env.CLIENT_URL, "http://localhost:3000"],
   credentials: true,
-  'allowedHeaders' : ['sessionId', 'Content-Type'],
-  'exposedHeaders' : ['sessionId'],
-  'methods' : 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  'preflightContinue':false
+  allowedHeaders: ["sessionId", "Content-Type"],
+  exposedHeaders: ["sessionId"],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
 };
 
 app.use(cors(corsOptions))
