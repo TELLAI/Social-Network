@@ -1,10 +1,12 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const Trending = () => {
     return (
-        <div>
-            Trending
-        </div>
+      <div>
+        <Navbar />
+        Trending
+      </div>
     );
 };
 
