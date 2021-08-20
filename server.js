@@ -20,7 +20,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-// bodyParser va nous permettre de mettre en forme les requtes 
+// bodyParser va nous permettre de mettre en forme les requetes 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
