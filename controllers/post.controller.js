@@ -45,7 +45,7 @@ module.exports.createPost = async (req, res) => {
     const newPost = new PostModel({
         posterId : req.body.posterId,
         message : req.body.message,
-        picture: req.file != null ? "./uploads/posts" + fileName : "", // si il y a une image on lui affecte le chemin sinon une string vide
+        picture: req.file != null ? "./uploads/posts/" + fileName : "", // si il y a une image on lui affecte le chemin sinon une string vide
         video : req.body.video,
         likers : [],           // A la création les commentaires et likes sont vides c logique
         comments : [],         // On va les remplir plutard

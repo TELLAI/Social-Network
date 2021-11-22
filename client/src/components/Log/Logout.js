@@ -5,7 +5,7 @@ import cookie from "js-cookie";
 const Logout = () => {
 
     const removeCookie = (key) => {
-        if(window != "undefined"){
+        if(window !== "undefined"){
             cookie.remove(key, { expires: 1 }) // expire dans 1 milliseconde
         }
     }
