@@ -11,6 +11,7 @@ const NewPostForm = () => {
   const [video, setVideo] = useState("");
   const [file, setFile] = useState();
   const userData = useSelector((state) => state.userReducer)
+  const error = useSelector((state) => state.errorReducer.postErrors)
   const dispatch = useDispatch();
 
   const handlePicture = (e) => {
@@ -40,7 +41,14 @@ const NewPostForm = () => {
     setVideo("");
     setFile("");
   };
-  const handleVideo = () => {
+
+
+  useEffect(() => {
+    if (!isEmpty(userData)) {
+      setIsLoading(false);
+      
+    
+      const handleVideo = () => {
     let findLink = message.split(" ");
     for (let i = 0; i < findLink.length; i++) {
       if (
@@ -55,11 +63,7 @@ const NewPostForm = () => {
     }
     }
   };
-
-  useEffect(() => {
-    if (!isEmpty(userData)) {
-      setIsLoading(false);
-      handleVideo();
+  handleVideo();
     }
   }, [userData, message, video]);
 
@@ -142,6 +146,8 @@ const NewPostForm = () => {
                 {video && (
                   <button onClick={() => setVideo("")}>Supprimer video</button>
                 )}
+                {!isEmpty(error.format) && <p>{error.format}</p>}
+                {!isEmpty(error.maxSize) && <p>{error.maxSize}</p>}
                 {message || postPicture || video.length > 20 ? (
                   <button onClick={cancelPost}>Annuler message</button>
                 ) : null}
