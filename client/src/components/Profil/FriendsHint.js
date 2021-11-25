@@ -11,7 +11,6 @@ const FriendsHint = () => {
   const usersData = useSelector((state) => state.usersReducers);
 
   useEffect(() => {
-
     const notFriendList = () => {
       let array = [];
       usersData.map((user) => {
@@ -45,33 +44,39 @@ const FriendsHint = () => {
     }
   }, [usersData, userData, playOnce]);
 
-  return (<div>
-
-    <div className="get-friends-container">
-        <h4>
-            Suggestion
-        </h4>
-        {isLoading ?(
-            <div className="icon">
-                <i className="fas fa-spinner fa-pulse"></i>
-            </div>
-        ) : (<ul>
-            {friendsHint && friendsHint.map((user) => {
+  return (
+    <div>
+      <div className="get-friends-container">
+        <h4>Suggestion</h4>
+        {isLoading ? (
+          <div className="icon">
+            <i className="fas fa-spinner fa-pulse"></i>
+          </div>
+        ) : (
+          <ul>
+            {friendsHint &&
+              friendsHint.map((user) => {
                 for (let i = 0; i < usersData.length; i++) {
-                    if(user === usersData[i]._id){
-                        return (<li className="user-hint" key={user}>
-                            <img src={usersData[i].picture} alt="user-pic" />
-                            <p>{usersData[i].pseudo}</p>
-                            <FollowHandler idToFollow={usersData[i]._id} type={"suggestion"} />
-                        </li>)
-                    }
-                } return null
-            })}
-        </ul>)}
+                  if (user === usersData[i]._id) {
+                    return (
+                      <li className="user-hint" key={user}>
+                        <img src={usersData[i].picture} alt="user-pic" />
+                        <p>{usersData[i].pseudo}</p>
+                        <FollowHandler
+                          idToFollow={usersData[i]._id}
+                          type={"suggestion"}
+                        />
+                      </li>
+                    );
+                  }
+                }
+                return null;
+              })}
+          </ul>
+        )}
+      </div>
     </div>
-
-  </div>
-  )
+  );
 };
 
 export default FriendsHint;
