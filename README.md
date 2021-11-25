@@ -1,7 +1,7 @@
 # Social-Network
 Création d'un réseau sociale avec le back-end en Node.js et le front-end en React.
 
-![Alt text](img/socialNetwork.jpg?raw=true "my-project")
+![Alt text](img/socialNetwork.jpg "my-project")
 
 ## Back-end
 
