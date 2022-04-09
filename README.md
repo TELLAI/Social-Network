@@ -64,7 +64,7 @@ La base du fonctionnement du Back est codé dans ce dossier contenant l'authenti
 
 
 ### Utils : 
-Dans ce dossier je traite certaine erreurs avec des fontions spécifique.
+Dans ce dossier je traite certaine erreurs avec des fonctions spécifique.
 
 
 ## Frond-end
